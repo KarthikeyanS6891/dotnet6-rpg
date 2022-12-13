@@ -41,7 +41,7 @@ namespace dotnet_rpg.Data
             }
             else
             {
-                response.Data = user.Id.ToString();
+                response.Data = CreateToken(user);
             }
 
             return response;
@@ -75,8 +75,8 @@ namespace dotnet_rpg.Data
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512())
             {
-                passwordHash = hmac.Key;
-                passwordSalt = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                passwordSalt = hmac.Key;
+                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
         }
 
